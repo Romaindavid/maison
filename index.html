@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--cream:#FAF7F2;--ink:#1C1C1E;--muted:#6B6B6B;--border:#E8E2D9;--card-bg:#fff}
+:root{--cream:#FAF7F2;--ink:#1C1C1E;--muted:#6B6B6B;--border:#E8E2D9;--card-bg:#fff;--star:#F5A623}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh}
 header{background:var(--ink);color:white;padding:44px 32px 36px;text-align:center;position:relative;overflow:hidden}
 header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(245,166,35,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(59,130,196,.15) 0%,transparent 60%)}
@@ -17,25 +17,32 @@ header h1 em{font-style:italic;color:#F5A623}
 .header-sub{margin-top:10px;font-size:.9rem;color:rgba(255,255,255,.6);position:relative}
 .trip-meta{display:flex;justify-content:center;gap:16px;margin-top:20px;flex-wrap:wrap;position:relative}
 .meta-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 14px;font-size:.8rem;color:rgba(255,255,255,.85)}
+
+/* VOTER BAR */
 .voter-bar{background:white;border-bottom:1px solid var(--border);padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(0,0,0,.07)}
 .voter-bar label{font-size:.82rem;font-weight:500;color:var(--muted);white-space:nowrap}
 .voter-btns{display:flex;gap:7px;flex-wrap:wrap}
 .voter-btn{padding:6px 15px;border-radius:100px;font-size:.82rem;font-weight:500;border:1.5px solid var(--border);background:white;cursor:pointer;transition:all .18s;font-family:inherit;color:var(--ink)}
 .voter-btn:hover{border-color:#999}
 .voter-btn.active{background:var(--ink);color:white;border-color:var(--ink)}
-.voter-btn.voted{background:#F0FAF4;border-color:#4A7C59;color:#2D6A4F}
-.voter-btn.voted.active{background:#2D6A4F;color:white;border-color:#2D6A4F}
+.voter-btn.rated{background:#FFF9F0;border-color:#F5A623;color:#92400E}
+.voter-btn.rated.active{background:#D97706;color:white;border-color:#D97706}
 .voter-status{font-size:.76rem;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;padding:32px;max-width:1500px;margin:0 auto}
 .card{background:var(--card-bg);border-radius:20px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;animation:fadeUp .5s ease both}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.09)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}.card:nth-child(4){animation-delay:.26s}
+
+/* PHOTOS */
 .photo-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:150px 150px;gap:3px;overflow:hidden}
 .photo-gallery .main-photo{grid-row:1/3;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .photo-gallery .side-wrap{overflow:hidden}
 .photo-gallery .side-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .photo-gallery img:hover{transform:scale(1.05)}
+
 .card-head{padding:16px 20px 0}
 .card-label{display:inline-flex;align-items:center;gap:6px;font-size:.67rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -44,16 +51,31 @@ header h1 em{font-style:italic;color:#F5A623}
 .price-banner{margin:11px 20px 0;padding:10px 13px;border-radius:12px;display:flex;align-items:baseline;gap:8px}
 .price{font-size:1.4rem;font-weight:700;font-family:'Playfair Display',serif}
 .price-note{font-size:.73rem;font-weight:400;opacity:.75}
-.vote-section{margin:11px 20px 0;padding:11px 13px;background:#FAFAFA;border-radius:12px;border:1px solid var(--border);min-height:50px}
-.vote-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px;min-height:22px}
-.vote-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 9px;border-radius:100px;font-size:.71rem;font-weight:500;border:1.5px solid;animation:popIn .2s ease}
-@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.vote-count{font-size:.68rem;color:var(--muted);font-weight:500}
-.vote-btn-wrap{padding:10px 20px 0}
-.vote-btn{width:100%;padding:9px;border-radius:12px;font-size:.83rem;font-weight:500;border:2px solid var(--border);background:white;cursor:pointer;font-family:inherit;color:var(--ink);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.vote-btn:hover:not(:disabled){border-color:#999;background:#f5f5f5}
-.vote-btn.my-vote{color:white;border-color:transparent}
-.vote-btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* RATING BLOCK */
+.rating-block{margin:11px 20px 0;padding:12px 14px;background:#FAFAFA;border-radius:14px;border:1px solid var(--border)}
+.rating-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.rating-title{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.rating-avg{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--star)}
+.star-rows{display:flex;flex-direction:column;gap:6px}
+.star-row{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:8px;transition:background .15s}
+.star-row.is-me{background:#FFFBEB;border:1px solid #FDE68A}
+.star-voter-name{font-size:.74rem;font-weight:500;min-width:62px;color:var(--ink)}
+.stars-wrap{flex:1}
+
+/* CSS STAR RATING — RTL trick */
+.star-rating{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:1px}
+.star-rating input{display:none}
+.star-rating label{font-size:1.3rem;color:#DDD;cursor:pointer;transition:color .1s;line-height:1}
+.star-rating label:hover,
+.star-rating label:hover~label,
+.star-rating input:checked~label{color:var(--star)}
+.star-row:not(.is-me) .star-rating label{cursor:default;pointer-events:none}
+
+.star-val{font-size:.76rem;font-weight:600;min-width:28px;text-align:right;color:var(--muted)}
+.star-val.has-val{color:var(--star)}
+
+/* CARD BODY */
 .card-body{padding:14px 20px;flex:1}
 .section-title{font-size:.61rem;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--border)}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:13px}
@@ -78,22 +100,25 @@ header h1 em{font-style:italic;color:#F5A623}
 .platform-badge{font-size:.68rem;color:var(--muted)}
 .cta-btn{display:inline-block;padding:6px 14px;border-radius:100px;font-size:.74rem;font-weight:500;text-decoration:none;color:white;transition:opacity .15s}
 .cta-btn:hover{opacity:.85}
+
+/* RESULTS */
 .results-banner{max-width:1500px;margin:0 auto;padding:0 32px 40px}
 .results-banner h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:16px}
-.result-bars{display:flex;flex-direction:column;gap:12px}
-.result-row{display:flex;align-items:center;gap:12px}
-.result-name{font-size:.82rem;font-weight:500;min-width:210px}
-.result-bar-bg{flex:1;background:var(--border);border-radius:100px;height:10px;overflow:hidden}
+.result-bars{display:flex;flex-direction:column;gap:14px}
+.result-row{display:flex;flex-direction:column;gap:5px}
+.result-left{display:flex;justify-content:space-between;align-items:baseline}
+.result-name{font-size:.84rem;font-weight:500}
+.result-avg{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.result-bar-bg{background:var(--border);border-radius:100px;height:10px;overflow:hidden}
 .result-bar-fill{height:100%;border-radius:100px;transition:width .6s ease}
-.result-score{font-size:.82rem;font-weight:600;min-width:60px;text-align:right}
 .page-footer{text-align:center;padding:24px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--border)}
+
 @media(max-width:600px){
   .grid{padding:14px;gap:14px}
   .voter-bar{padding:10px 14px;gap:10px}
   .voter-status{display:none}
   .pro-con{grid-template-columns:1fr}
   .photo-gallery{grid-template-rows:110px 110px}
-  .result-name{min-width:120px;font-size:.74rem}
 }
 </style>
 </head>
@@ -101,19 +126,19 @@ header h1 em{font-style:italic;color:#F5A623}
 
 <header>
   <span class="header-emoji">🏔️☀️🌿</span>
-  <h1>Été 2026 — <em>À vous de voter !</em></h1>
+  <h1>Été 2026 — <em>Notez les maisons !</em></h1>
   <p class="header-sub">3 couples · 6 enfants (2–11 ans) · 2–9 août 2026</p>
   <div class="trip-meta">
     <span class="meta-pill">📅 7 nuits</span>
     <span class="meta-pill">👨‍👩‍👧 6 adultes + 6 enfants</span>
-    <span class="meta-pill">🗳️ 1 vote chacun</span>
+    <span class="meta-pill">⭐ Note chaque maison de 0 à 5</span>
   </div>
 </header>
 
 <div class="voter-bar">
   <label>👋 Qui es-tu ?</label>
   <div class="voter-btns"><button class="voter-btn" data-voter="Romain" onclick="selectVoter(this)">Romain</button><button class="voter-btn" data-voter="Estelle" onclick="selectVoter(this)">Estelle</button><button class="voter-btn" data-voter="Barbara" onclick="selectVoter(this)">Barbara</button><button class="voter-btn" data-voter="Vivien" onclick="selectVoter(this)">Vivien</button><button class="voter-btn" data-voter="Antoine" onclick="selectVoter(this)">Antoine</button><button class="voter-btn" data-voter="Sabrina" onclick="selectVoter(this)">Sabrina</button></div>
-  <span class="voter-status" id="voter-status">Sélectionne ton prénom pour voter</span>
+  <span class="voter-status" id="voter-status">Sélectionne ton prénom pour noter</span>
 </div>
 
 <div class="grid">
@@ -133,13 +158,17 @@ header h1 em{font-style:italic;color:#F5A623}
     <span class="price" style="color:#4A7C59">2 700 €</span>
     <span class="price-note" style="color:#4A7C59">la semaine · 2–9 août</span>
   </div>
-  <div class="vote-section">
-    <div class="vote-chips" id="chips-bearn"></div>
-    <div class="vote-count" id="count-bearn">Aucun vote</div>
+
+  <div class="rating-block" id="rblock-bearn">
+    <div class="rating-header">
+      <span class="rating-title">Notes du groupe</span>
+      <span class="rating-avg" id="avg-bearn">— / 5</span>
+    </div>
+    <div class="star-rows">
+      <div class="star-row" id="row-bearn-Romain"><span class="star-voter-name">Romain</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Romain" id="s5-bearn-Romain" value="5" onchange="rateStar('Romain','bearn',5)"><label for="s5-bearn-Romain" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Romain" id="s4-bearn-Romain" value="4" onchange="rateStar('Romain','bearn',4)"><label for="s4-bearn-Romain" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Romain" id="s3-bearn-Romain" value="3" onchange="rateStar('Romain','bearn',3)"><label for="s3-bearn-Romain" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Romain" id="s2-bearn-Romain" value="2" onchange="rateStar('Romain','bearn',2)"><label for="s2-bearn-Romain" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Romain" id="s1-bearn-Romain" value="1" onchange="rateStar('Romain','bearn',1)"><label for="s1-bearn-Romain" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Romain">—</span></div><div class="star-row" id="row-bearn-Estelle"><span class="star-voter-name">Estelle</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Estelle" id="s5-bearn-Estelle" value="5" onchange="rateStar('Estelle','bearn',5)"><label for="s5-bearn-Estelle" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Estelle" id="s4-bearn-Estelle" value="4" onchange="rateStar('Estelle','bearn',4)"><label for="s4-bearn-Estelle" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Estelle" id="s3-bearn-Estelle" value="3" onchange="rateStar('Estelle','bearn',3)"><label for="s3-bearn-Estelle" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Estelle" id="s2-bearn-Estelle" value="2" onchange="rateStar('Estelle','bearn',2)"><label for="s2-bearn-Estelle" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Estelle" id="s1-bearn-Estelle" value="1" onchange="rateStar('Estelle','bearn',1)"><label for="s1-bearn-Estelle" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Estelle">—</span></div><div class="star-row" id="row-bearn-Barbara"><span class="star-voter-name">Barbara</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Barbara" id="s5-bearn-Barbara" value="5" onchange="rateStar('Barbara','bearn',5)"><label for="s5-bearn-Barbara" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Barbara" id="s4-bearn-Barbara" value="4" onchange="rateStar('Barbara','bearn',4)"><label for="s4-bearn-Barbara" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Barbara" id="s3-bearn-Barbara" value="3" onchange="rateStar('Barbara','bearn',3)"><label for="s3-bearn-Barbara" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Barbara" id="s2-bearn-Barbara" value="2" onchange="rateStar('Barbara','bearn',2)"><label for="s2-bearn-Barbara" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Barbara" id="s1-bearn-Barbara" value="1" onchange="rateStar('Barbara','bearn',1)"><label for="s1-bearn-Barbara" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Barbara">—</span></div><div class="star-row" id="row-bearn-Vivien"><span class="star-voter-name">Vivien</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Vivien" id="s5-bearn-Vivien" value="5" onchange="rateStar('Vivien','bearn',5)"><label for="s5-bearn-Vivien" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Vivien" id="s4-bearn-Vivien" value="4" onchange="rateStar('Vivien','bearn',4)"><label for="s4-bearn-Vivien" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Vivien" id="s3-bearn-Vivien" value="3" onchange="rateStar('Vivien','bearn',3)"><label for="s3-bearn-Vivien" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Vivien" id="s2-bearn-Vivien" value="2" onchange="rateStar('Vivien','bearn',2)"><label for="s2-bearn-Vivien" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Vivien" id="s1-bearn-Vivien" value="1" onchange="rateStar('Vivien','bearn',1)"><label for="s1-bearn-Vivien" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Vivien">—</span></div><div class="star-row" id="row-bearn-Antoine"><span class="star-voter-name">Antoine</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Antoine" id="s5-bearn-Antoine" value="5" onchange="rateStar('Antoine','bearn',5)"><label for="s5-bearn-Antoine" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Antoine" id="s4-bearn-Antoine" value="4" onchange="rateStar('Antoine','bearn',4)"><label for="s4-bearn-Antoine" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Antoine" id="s3-bearn-Antoine" value="3" onchange="rateStar('Antoine','bearn',3)"><label for="s3-bearn-Antoine" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Antoine" id="s2-bearn-Antoine" value="2" onchange="rateStar('Antoine','bearn',2)"><label for="s2-bearn-Antoine" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Antoine" id="s1-bearn-Antoine" value="1" onchange="rateStar('Antoine','bearn',1)"><label for="s1-bearn-Antoine" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Antoine">—</span></div><div class="star-row" id="row-bearn-Sabrina"><span class="star-voter-name">Sabrina</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-bearn-Sabrina" id="s5-bearn-Sabrina" value="5" onchange="rateStar('Sabrina','bearn',5)"><label for="s5-bearn-Sabrina" title="5 étoiles">★</label><input type="radio" name="stars-bearn-Sabrina" id="s4-bearn-Sabrina" value="4" onchange="rateStar('Sabrina','bearn',4)"><label for="s4-bearn-Sabrina" title="4 étoiles">★</label><input type="radio" name="stars-bearn-Sabrina" id="s3-bearn-Sabrina" value="3" onchange="rateStar('Sabrina','bearn',3)"><label for="s3-bearn-Sabrina" title="3 étoiles">★</label><input type="radio" name="stars-bearn-Sabrina" id="s2-bearn-Sabrina" value="2" onchange="rateStar('Sabrina','bearn',2)"><label for="s2-bearn-Sabrina" title="2 étoiles">★</label><input type="radio" name="stars-bearn-Sabrina" id="s1-bearn-Sabrina" value="1" onchange="rateStar('Sabrina','bearn',1)"><label for="s1-bearn-Sabrina" title="1 étoiles">★</label></div></div><span class="star-val" id="val-bearn-Sabrina">—</span></div>
+    </div>
   </div>
-  <div class="vote-btn-wrap">
-    <button class="vote-btn" id="vbtn-bearn" onclick="castVote('bearn')" disabled>🗳️ Sélectionne ton prénom</button>
-  </div>
+
   <div class="card-body">
     <p class="section-title">Équipements clés</p>
     <div class="tags"><span class="tag green">🏊 Piscine hors-sol 10×5m</span><span class="tag blue">🏞️ Rivière privée</span><span class="tag green">🌿 1,5 ha clos</span><span class="tag slate">🛏️ Draps & serviettes inclus</span><span class="tag slate">🏓 Ping-pong + Pétanque</span><span class="tag blue">🏔️ Pyrénées 30 min</span></div>
@@ -171,13 +200,17 @@ header h1 em{font-style:italic;color:#F5A623}
     <span class="price" style="color:#3B82C4">2 611 €</span>
     <span class="price-note" style="color:#3B82C4">la semaine · 2–9 août</span>
   </div>
-  <div class="vote-section">
-    <div class="vote-chips" id="chips-halte"></div>
-    <div class="vote-count" id="count-halte">Aucun vote</div>
+
+  <div class="rating-block" id="rblock-halte">
+    <div class="rating-header">
+      <span class="rating-title">Notes du groupe</span>
+      <span class="rating-avg" id="avg-halte">— / 5</span>
+    </div>
+    <div class="star-rows">
+      <div class="star-row" id="row-halte-Romain"><span class="star-voter-name">Romain</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Romain" id="s5-halte-Romain" value="5" onchange="rateStar('Romain','halte',5)"><label for="s5-halte-Romain" title="5 étoiles">★</label><input type="radio" name="stars-halte-Romain" id="s4-halte-Romain" value="4" onchange="rateStar('Romain','halte',4)"><label for="s4-halte-Romain" title="4 étoiles">★</label><input type="radio" name="stars-halte-Romain" id="s3-halte-Romain" value="3" onchange="rateStar('Romain','halte',3)"><label for="s3-halte-Romain" title="3 étoiles">★</label><input type="radio" name="stars-halte-Romain" id="s2-halte-Romain" value="2" onchange="rateStar('Romain','halte',2)"><label for="s2-halte-Romain" title="2 étoiles">★</label><input type="radio" name="stars-halte-Romain" id="s1-halte-Romain" value="1" onchange="rateStar('Romain','halte',1)"><label for="s1-halte-Romain" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Romain">—</span></div><div class="star-row" id="row-halte-Estelle"><span class="star-voter-name">Estelle</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Estelle" id="s5-halte-Estelle" value="5" onchange="rateStar('Estelle','halte',5)"><label for="s5-halte-Estelle" title="5 étoiles">★</label><input type="radio" name="stars-halte-Estelle" id="s4-halte-Estelle" value="4" onchange="rateStar('Estelle','halte',4)"><label for="s4-halte-Estelle" title="4 étoiles">★</label><input type="radio" name="stars-halte-Estelle" id="s3-halte-Estelle" value="3" onchange="rateStar('Estelle','halte',3)"><label for="s3-halte-Estelle" title="3 étoiles">★</label><input type="radio" name="stars-halte-Estelle" id="s2-halte-Estelle" value="2" onchange="rateStar('Estelle','halte',2)"><label for="s2-halte-Estelle" title="2 étoiles">★</label><input type="radio" name="stars-halte-Estelle" id="s1-halte-Estelle" value="1" onchange="rateStar('Estelle','halte',1)"><label for="s1-halte-Estelle" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Estelle">—</span></div><div class="star-row" id="row-halte-Barbara"><span class="star-voter-name">Barbara</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Barbara" id="s5-halte-Barbara" value="5" onchange="rateStar('Barbara','halte',5)"><label for="s5-halte-Barbara" title="5 étoiles">★</label><input type="radio" name="stars-halte-Barbara" id="s4-halte-Barbara" value="4" onchange="rateStar('Barbara','halte',4)"><label for="s4-halte-Barbara" title="4 étoiles">★</label><input type="radio" name="stars-halte-Barbara" id="s3-halte-Barbara" value="3" onchange="rateStar('Barbara','halte',3)"><label for="s3-halte-Barbara" title="3 étoiles">★</label><input type="radio" name="stars-halte-Barbara" id="s2-halte-Barbara" value="2" onchange="rateStar('Barbara','halte',2)"><label for="s2-halte-Barbara" title="2 étoiles">★</label><input type="radio" name="stars-halte-Barbara" id="s1-halte-Barbara" value="1" onchange="rateStar('Barbara','halte',1)"><label for="s1-halte-Barbara" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Barbara">—</span></div><div class="star-row" id="row-halte-Vivien"><span class="star-voter-name">Vivien</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Vivien" id="s5-halte-Vivien" value="5" onchange="rateStar('Vivien','halte',5)"><label for="s5-halte-Vivien" title="5 étoiles">★</label><input type="radio" name="stars-halte-Vivien" id="s4-halte-Vivien" value="4" onchange="rateStar('Vivien','halte',4)"><label for="s4-halte-Vivien" title="4 étoiles">★</label><input type="radio" name="stars-halte-Vivien" id="s3-halte-Vivien" value="3" onchange="rateStar('Vivien','halte',3)"><label for="s3-halte-Vivien" title="3 étoiles">★</label><input type="radio" name="stars-halte-Vivien" id="s2-halte-Vivien" value="2" onchange="rateStar('Vivien','halte',2)"><label for="s2-halte-Vivien" title="2 étoiles">★</label><input type="radio" name="stars-halte-Vivien" id="s1-halte-Vivien" value="1" onchange="rateStar('Vivien','halte',1)"><label for="s1-halte-Vivien" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Vivien">—</span></div><div class="star-row" id="row-halte-Antoine"><span class="star-voter-name">Antoine</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Antoine" id="s5-halte-Antoine" value="5" onchange="rateStar('Antoine','halte',5)"><label for="s5-halte-Antoine" title="5 étoiles">★</label><input type="radio" name="stars-halte-Antoine" id="s4-halte-Antoine" value="4" onchange="rateStar('Antoine','halte',4)"><label for="s4-halte-Antoine" title="4 étoiles">★</label><input type="radio" name="stars-halte-Antoine" id="s3-halte-Antoine" value="3" onchange="rateStar('Antoine','halte',3)"><label for="s3-halte-Antoine" title="3 étoiles">★</label><input type="radio" name="stars-halte-Antoine" id="s2-halte-Antoine" value="2" onchange="rateStar('Antoine','halte',2)"><label for="s2-halte-Antoine" title="2 étoiles">★</label><input type="radio" name="stars-halte-Antoine" id="s1-halte-Antoine" value="1" onchange="rateStar('Antoine','halte',1)"><label for="s1-halte-Antoine" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Antoine">—</span></div><div class="star-row" id="row-halte-Sabrina"><span class="star-voter-name">Sabrina</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-halte-Sabrina" id="s5-halte-Sabrina" value="5" onchange="rateStar('Sabrina','halte',5)"><label for="s5-halte-Sabrina" title="5 étoiles">★</label><input type="radio" name="stars-halte-Sabrina" id="s4-halte-Sabrina" value="4" onchange="rateStar('Sabrina','halte',4)"><label for="s4-halte-Sabrina" title="4 étoiles">★</label><input type="radio" name="stars-halte-Sabrina" id="s3-halte-Sabrina" value="3" onchange="rateStar('Sabrina','halte',3)"><label for="s3-halte-Sabrina" title="3 étoiles">★</label><input type="radio" name="stars-halte-Sabrina" id="s2-halte-Sabrina" value="2" onchange="rateStar('Sabrina','halte',2)"><label for="s2-halte-Sabrina" title="2 étoiles">★</label><input type="radio" name="stars-halte-Sabrina" id="s1-halte-Sabrina" value="1" onchange="rateStar('Sabrina','halte',1)"><label for="s1-halte-Sabrina" title="1 étoiles">★</label></div></div><span class="star-val" id="val-halte-Sabrina">—</span></div>
+    </div>
   </div>
-  <div class="vote-btn-wrap">
-    <button class="vote-btn" id="vbtn-halte" onclick="castVote('halte')" disabled>🗳️ Sélectionne ton prénom</button>
-  </div>
+
   <div class="card-body">
     <p class="section-title">Équipements clés</p>
     <div class="tags"><span class="tag blue">🏔️ Sur place — montagne</span><span class="tag slate">🛏️ 4 ch. adultes + dortoir enfants</span><span class="tag green">🚲 Local vélos</span><span class="tag slate">🏡 Maison 1789</span><span class="tag blue">🏞️ Rivière La Neste 1,3 km</span><span class="tag green">🥾 Randos depuis le village</span><span class="tag blue">🏊 Piscine hors-sol</span></div>
@@ -209,13 +242,17 @@ header h1 em{font-style:italic;color:#F5A623}
     <span class="price" style="color:#D97706">2 685 €</span>
     <span class="price-note" style="color:#D97706">la semaine · 2–9 août</span>
   </div>
-  <div class="vote-section">
-    <div class="vote-chips" id="chips-gasc"></div>
-    <div class="vote-count" id="count-gasc">Aucun vote</div>
+
+  <div class="rating-block" id="rblock-gasc">
+    <div class="rating-header">
+      <span class="rating-title">Notes du groupe</span>
+      <span class="rating-avg" id="avg-gasc">— / 5</span>
+    </div>
+    <div class="star-rows">
+      <div class="star-row" id="row-gasc-Romain"><span class="star-voter-name">Romain</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Romain" id="s5-gasc-Romain" value="5" onchange="rateStar('Romain','gasc',5)"><label for="s5-gasc-Romain" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Romain" id="s4-gasc-Romain" value="4" onchange="rateStar('Romain','gasc',4)"><label for="s4-gasc-Romain" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Romain" id="s3-gasc-Romain" value="3" onchange="rateStar('Romain','gasc',3)"><label for="s3-gasc-Romain" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Romain" id="s2-gasc-Romain" value="2" onchange="rateStar('Romain','gasc',2)"><label for="s2-gasc-Romain" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Romain" id="s1-gasc-Romain" value="1" onchange="rateStar('Romain','gasc',1)"><label for="s1-gasc-Romain" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Romain">—</span></div><div class="star-row" id="row-gasc-Estelle"><span class="star-voter-name">Estelle</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Estelle" id="s5-gasc-Estelle" value="5" onchange="rateStar('Estelle','gasc',5)"><label for="s5-gasc-Estelle" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Estelle" id="s4-gasc-Estelle" value="4" onchange="rateStar('Estelle','gasc',4)"><label for="s4-gasc-Estelle" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Estelle" id="s3-gasc-Estelle" value="3" onchange="rateStar('Estelle','gasc',3)"><label for="s3-gasc-Estelle" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Estelle" id="s2-gasc-Estelle" value="2" onchange="rateStar('Estelle','gasc',2)"><label for="s2-gasc-Estelle" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Estelle" id="s1-gasc-Estelle" value="1" onchange="rateStar('Estelle','gasc',1)"><label for="s1-gasc-Estelle" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Estelle">—</span></div><div class="star-row" id="row-gasc-Barbara"><span class="star-voter-name">Barbara</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Barbara" id="s5-gasc-Barbara" value="5" onchange="rateStar('Barbara','gasc',5)"><label for="s5-gasc-Barbara" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Barbara" id="s4-gasc-Barbara" value="4" onchange="rateStar('Barbara','gasc',4)"><label for="s4-gasc-Barbara" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Barbara" id="s3-gasc-Barbara" value="3" onchange="rateStar('Barbara','gasc',3)"><label for="s3-gasc-Barbara" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Barbara" id="s2-gasc-Barbara" value="2" onchange="rateStar('Barbara','gasc',2)"><label for="s2-gasc-Barbara" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Barbara" id="s1-gasc-Barbara" value="1" onchange="rateStar('Barbara','gasc',1)"><label for="s1-gasc-Barbara" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Barbara">—</span></div><div class="star-row" id="row-gasc-Vivien"><span class="star-voter-name">Vivien</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Vivien" id="s5-gasc-Vivien" value="5" onchange="rateStar('Vivien','gasc',5)"><label for="s5-gasc-Vivien" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Vivien" id="s4-gasc-Vivien" value="4" onchange="rateStar('Vivien','gasc',4)"><label for="s4-gasc-Vivien" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Vivien" id="s3-gasc-Vivien" value="3" onchange="rateStar('Vivien','gasc',3)"><label for="s3-gasc-Vivien" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Vivien" id="s2-gasc-Vivien" value="2" onchange="rateStar('Vivien','gasc',2)"><label for="s2-gasc-Vivien" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Vivien" id="s1-gasc-Vivien" value="1" onchange="rateStar('Vivien','gasc',1)"><label for="s1-gasc-Vivien" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Vivien">—</span></div><div class="star-row" id="row-gasc-Antoine"><span class="star-voter-name">Antoine</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Antoine" id="s5-gasc-Antoine" value="5" onchange="rateStar('Antoine','gasc',5)"><label for="s5-gasc-Antoine" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Antoine" id="s4-gasc-Antoine" value="4" onchange="rateStar('Antoine','gasc',4)"><label for="s4-gasc-Antoine" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Antoine" id="s3-gasc-Antoine" value="3" onchange="rateStar('Antoine','gasc',3)"><label for="s3-gasc-Antoine" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Antoine" id="s2-gasc-Antoine" value="2" onchange="rateStar('Antoine','gasc',2)"><label for="s2-gasc-Antoine" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Antoine" id="s1-gasc-Antoine" value="1" onchange="rateStar('Antoine','gasc',1)"><label for="s1-gasc-Antoine" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Antoine">—</span></div><div class="star-row" id="row-gasc-Sabrina"><span class="star-voter-name">Sabrina</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-gasc-Sabrina" id="s5-gasc-Sabrina" value="5" onchange="rateStar('Sabrina','gasc',5)"><label for="s5-gasc-Sabrina" title="5 étoiles">★</label><input type="radio" name="stars-gasc-Sabrina" id="s4-gasc-Sabrina" value="4" onchange="rateStar('Sabrina','gasc',4)"><label for="s4-gasc-Sabrina" title="4 étoiles">★</label><input type="radio" name="stars-gasc-Sabrina" id="s3-gasc-Sabrina" value="3" onchange="rateStar('Sabrina','gasc',3)"><label for="s3-gasc-Sabrina" title="3 étoiles">★</label><input type="radio" name="stars-gasc-Sabrina" id="s2-gasc-Sabrina" value="2" onchange="rateStar('Sabrina','gasc',2)"><label for="s2-gasc-Sabrina" title="2 étoiles">★</label><input type="radio" name="stars-gasc-Sabrina" id="s1-gasc-Sabrina" value="1" onchange="rateStar('Sabrina','gasc',1)"><label for="s1-gasc-Sabrina" title="1 étoiles">★</label></div></div><span class="star-val" id="val-gasc-Sabrina">—</span></div>
+    </div>
   </div>
-  <div class="vote-btn-wrap">
-    <button class="vote-btn" id="vbtn-gasc" onclick="castVote('gasc')" disabled>🗳️ Sélectionne ton prénom</button>
-  </div>
+
   <div class="card-body">
     <p class="section-title">Équipements clés</p>
     <div class="tags"><span class="tag blue">🏊 Piscine privée</span><span class="tag purple">🛁 Jacuzzi privé</span><span class="tag green">🌡️ Clim + Chauffage</span><span class="tag slate">🚗 Parking 6 places</span><span class="tag amber">🔥 BBQ</span><span class="tag slate">📺 TV + Wifi</span></div>
@@ -247,13 +284,17 @@ header h1 em{font-style:italic;color:#F5A623}
     <span class="price" style="color:#7C3AED">1 890 €</span>
     <span class="price-note" style="color:#7C3AED">la semaine · 2–9 août</span>
   </div>
-  <div class="vote-section">
-    <div class="vote-chips" id="chips-ossau"></div>
-    <div class="vote-count" id="count-ossau">Aucun vote</div>
+
+  <div class="rating-block" id="rblock-ossau">
+    <div class="rating-header">
+      <span class="rating-title">Notes du groupe</span>
+      <span class="rating-avg" id="avg-ossau">— / 5</span>
+    </div>
+    <div class="star-rows">
+      <div class="star-row" id="row-ossau-Romain"><span class="star-voter-name">Romain</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Romain" id="s5-ossau-Romain" value="5" onchange="rateStar('Romain','ossau',5)"><label for="s5-ossau-Romain" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Romain" id="s4-ossau-Romain" value="4" onchange="rateStar('Romain','ossau',4)"><label for="s4-ossau-Romain" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Romain" id="s3-ossau-Romain" value="3" onchange="rateStar('Romain','ossau',3)"><label for="s3-ossau-Romain" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Romain" id="s2-ossau-Romain" value="2" onchange="rateStar('Romain','ossau',2)"><label for="s2-ossau-Romain" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Romain" id="s1-ossau-Romain" value="1" onchange="rateStar('Romain','ossau',1)"><label for="s1-ossau-Romain" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Romain">—</span></div><div class="star-row" id="row-ossau-Estelle"><span class="star-voter-name">Estelle</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Estelle" id="s5-ossau-Estelle" value="5" onchange="rateStar('Estelle','ossau',5)"><label for="s5-ossau-Estelle" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Estelle" id="s4-ossau-Estelle" value="4" onchange="rateStar('Estelle','ossau',4)"><label for="s4-ossau-Estelle" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Estelle" id="s3-ossau-Estelle" value="3" onchange="rateStar('Estelle','ossau',3)"><label for="s3-ossau-Estelle" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Estelle" id="s2-ossau-Estelle" value="2" onchange="rateStar('Estelle','ossau',2)"><label for="s2-ossau-Estelle" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Estelle" id="s1-ossau-Estelle" value="1" onchange="rateStar('Estelle','ossau',1)"><label for="s1-ossau-Estelle" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Estelle">—</span></div><div class="star-row" id="row-ossau-Barbara"><span class="star-voter-name">Barbara</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Barbara" id="s5-ossau-Barbara" value="5" onchange="rateStar('Barbara','ossau',5)"><label for="s5-ossau-Barbara" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Barbara" id="s4-ossau-Barbara" value="4" onchange="rateStar('Barbara','ossau',4)"><label for="s4-ossau-Barbara" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Barbara" id="s3-ossau-Barbara" value="3" onchange="rateStar('Barbara','ossau',3)"><label for="s3-ossau-Barbara" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Barbara" id="s2-ossau-Barbara" value="2" onchange="rateStar('Barbara','ossau',2)"><label for="s2-ossau-Barbara" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Barbara" id="s1-ossau-Barbara" value="1" onchange="rateStar('Barbara','ossau',1)"><label for="s1-ossau-Barbara" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Barbara">—</span></div><div class="star-row" id="row-ossau-Vivien"><span class="star-voter-name">Vivien</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Vivien" id="s5-ossau-Vivien" value="5" onchange="rateStar('Vivien','ossau',5)"><label for="s5-ossau-Vivien" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Vivien" id="s4-ossau-Vivien" value="4" onchange="rateStar('Vivien','ossau',4)"><label for="s4-ossau-Vivien" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Vivien" id="s3-ossau-Vivien" value="3" onchange="rateStar('Vivien','ossau',3)"><label for="s3-ossau-Vivien" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Vivien" id="s2-ossau-Vivien" value="2" onchange="rateStar('Vivien','ossau',2)"><label for="s2-ossau-Vivien" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Vivien" id="s1-ossau-Vivien" value="1" onchange="rateStar('Vivien','ossau',1)"><label for="s1-ossau-Vivien" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Vivien">—</span></div><div class="star-row" id="row-ossau-Antoine"><span class="star-voter-name">Antoine</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Antoine" id="s5-ossau-Antoine" value="5" onchange="rateStar('Antoine','ossau',5)"><label for="s5-ossau-Antoine" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Antoine" id="s4-ossau-Antoine" value="4" onchange="rateStar('Antoine','ossau',4)"><label for="s4-ossau-Antoine" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Antoine" id="s3-ossau-Antoine" value="3" onchange="rateStar('Antoine','ossau',3)"><label for="s3-ossau-Antoine" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Antoine" id="s2-ossau-Antoine" value="2" onchange="rateStar('Antoine','ossau',2)"><label for="s2-ossau-Antoine" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Antoine" id="s1-ossau-Antoine" value="1" onchange="rateStar('Antoine','ossau',1)"><label for="s1-ossau-Antoine" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Antoine">—</span></div><div class="star-row" id="row-ossau-Sabrina"><span class="star-voter-name">Sabrina</span><div class="stars-wrap"><div class="star-rating"><input type="radio" name="stars-ossau-Sabrina" id="s5-ossau-Sabrina" value="5" onchange="rateStar('Sabrina','ossau',5)"><label for="s5-ossau-Sabrina" title="5 étoiles">★</label><input type="radio" name="stars-ossau-Sabrina" id="s4-ossau-Sabrina" value="4" onchange="rateStar('Sabrina','ossau',4)"><label for="s4-ossau-Sabrina" title="4 étoiles">★</label><input type="radio" name="stars-ossau-Sabrina" id="s3-ossau-Sabrina" value="3" onchange="rateStar('Sabrina','ossau',3)"><label for="s3-ossau-Sabrina" title="3 étoiles">★</label><input type="radio" name="stars-ossau-Sabrina" id="s2-ossau-Sabrina" value="2" onchange="rateStar('Sabrina','ossau',2)"><label for="s2-ossau-Sabrina" title="2 étoiles">★</label><input type="radio" name="stars-ossau-Sabrina" id="s1-ossau-Sabrina" value="1" onchange="rateStar('Sabrina','ossau',1)"><label for="s1-ossau-Sabrina" title="1 étoiles">★</label></div></div><span class="star-val" id="val-ossau-Sabrina">—</span></div>
+    </div>
   </div>
-  <div class="vote-btn-wrap">
-    <button class="vote-btn" id="vbtn-ossau" onclick="castVote('ossau')" disabled>🗳️ Sélectionne ton prénom</button>
-  </div>
+
   <div class="card-body">
     <p class="section-title">Équipements clés</p>
     <div class="tags"><span class="tag purple">🛁 Jacuzzi vue montagnes 😍</span><span class="tag blue">🏔️ Sur place — Ossau</span><span class="tag green">🥾 Rando depuis la porte</span><span class="tag amber">👶 Lit bébé inclus</span><span class="tag slate">⭐⭐⭐ Gîtes de France</span><span class="tag blue">🚂 Petit train 25 min</span></div>
@@ -273,41 +314,67 @@ header h1 em{font-style:italic;color:#F5A623}
 </div>
 
 <div class="results-banner">
-  <h3>🏆 Résultats en direct</h3>
-  <div class="result-bars"><div class="result-row"><span class="result-name">🌿 Grande Maison Béarnaise</span><div class="result-bar-bg"><div class="result-bar-fill" id="bar-bearn" style="background:#4A7C59;width:0%"></div></div><span class="result-score" id="score-bearn" style="color:#4A7C59">0 vote</span></div><div class="result-row"><span class="result-name">🏔️ La Halte — Gîte de groupe</span><div class="result-bar-bg"><div class="result-bar-fill" id="bar-halte" style="background:#3B82C4;width:0%"></div></div><span class="result-score" id="score-halte" style="color:#3B82C4">0 vote</span></div><div class="result-row"><span class="result-name">🎷 Maison Gasconne</span><div class="result-bar-bg"><div class="result-bar-fill" id="bar-gasc" style="background:#D97706;width:0%"></div></div><span class="result-score" id="score-gasc" style="color:#D97706">0 vote</span></div><div class="result-row"><span class="result-name">👁️ Bellevue — Vallée d'Ossau</span><div class="result-bar-bg"><div class="result-bar-fill" id="bar-ossau" style="background:#7C3AED;width:0%"></div></div><span class="result-score" id="score-ossau" style="color:#7C3AED">0 vote</span></div></div>
+  <h3>🏆 Classement en direct</h3>
+  <div class="result-bars" id="result-bars">
+<div class="result-row">
+  <div class="result-left">
+    <span class="result-name">🌿 Grande Maison Béarnaise</span>
+    <span class="result-avg" id="ravg-bearn" style="color:#4A7C59">— / 5</span>
+  </div>
+  <div class="result-bar-bg"><div class="result-bar-fill" id="bar-bearn" style="background:#4A7C59;width:0%"></div></div>
+</div>
+<div class="result-row">
+  <div class="result-left">
+    <span class="result-name">🏔️ La Halte — Gîte de groupe</span>
+    <span class="result-avg" id="ravg-halte" style="color:#3B82C4">— / 5</span>
+  </div>
+  <div class="result-bar-bg"><div class="result-bar-fill" id="bar-halte" style="background:#3B82C4;width:0%"></div></div>
+</div>
+<div class="result-row">
+  <div class="result-left">
+    <span class="result-name">🎷 Maison Gasconne</span>
+    <span class="result-avg" id="ravg-gasc" style="color:#D97706">— / 5</span>
+  </div>
+  <div class="result-bar-bg"><div class="result-bar-fill" id="bar-gasc" style="background:#D97706;width:0%"></div></div>
+</div>
+<div class="result-row">
+  <div class="result-left">
+    <span class="result-name">👁️ Bellevue — Vallée d'Ossau</span>
+    <span class="result-avg" id="ravg-ossau" style="color:#7C3AED">— / 5</span>
+  </div>
+  <div class="result-bar-bg"><div class="result-bar-fill" id="bar-ossau" style="background:#7C3AED;width:0%"></div></div>
+</div></div>
 </div>
 
 <div class="page-footer">Comparatif · 2–9 août 2026 · 3 couples, 6 enfants (2–11 ans)</div>
 
 <script>
-// ── CONFIG ── Remplace ces deux valeurs après avoir créé ton JSONBin
 const BIN_ID  = '69cae2da36566621a862e022';
 const BIN_KEY = '$2a$10$tzOAnbRf/7eqk4ddeIawL.gvfUtOqmId43mxq.FKxm4jXRTw0U3Ve';
-// ────────────
-
 const VOTERS = ["Romain", "Estelle", "Barbara", "Vivien", "Antoine", "Sabrina"];
 const HOUSES = ["bearn", "halte", "gasc", "ossau"];
 const HOUSE_COLORS = {"bearn": "#4A7C59", "halte": "#3B82C4", "gasc": "#D97706", "ossau": "#7C3AED"};
+const HOUSE_NAMES  = {"bearn": "\ud83c\udf3f Grande Maison B\u00e9arnaise", "halte": "\ud83c\udfd4\ufe0f La Halte \u2014 G\u00eete de groupe", "gasc": "\ud83c\udfb7 Maison Gasconne", "ossau": "\ud83d\udc41\ufe0f Bellevue \u2014 Vall\u00e9e d'Ossau"};
 
 const API = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-const HEADERS_READ  = {'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false'};
-const HEADERS_WRITE = {'X-Master-Key': BIN_KEY, 'Content-Type': 'application/json'};
+const H_READ  = {'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false'};
+const H_WRITE = {'X-Master-Key': BIN_KEY, 'Content-Type': 'application/json'};
 
 let currentVoter = null;
-let _cache = null; // local cache to avoid flicker
+let _cache = null;
 
-async function getVotes() {
+async function getData() {
   try {
-    const r = await fetch(API, {headers: HEADERS_READ});
-    const d = await r.json();
-    _cache = d && typeof d === 'object' ? d : {};
+    const r = await fetch(API, {headers: H_READ});
+    _cache = await r.json();
+    if (typeof _cache !== 'object' || Array.isArray(_cache)) _cache = {};
     return _cache;
   } catch(e) { return _cache || {}; }
 }
 
-async function saveVotes(votes) {
-  _cache = votes;
-  await fetch(API, {method:'PUT', headers: HEADERS_WRITE, body: JSON.stringify(votes)});
+async function saveData(d) {
+  _cache = d;
+  try { await fetch(API, {method:'PUT', headers: H_WRITE, body: JSON.stringify(d)}); } catch(e) {}
 }
 
 function selectVoter(btn) {
@@ -317,65 +384,90 @@ function selectVoter(btn) {
   updateUI();
 }
 
-async function castVote(houseId) {
-  if (!currentVoter) { alert("Sélectionne ton prénom d'abord !"); return; }
-  const votes = await getVotes();
-  votes[currentVoter] = houseId;
-  await saveVotes(votes);
+async function rateStar(voter, houseId, stars) {
+  if (voter !== currentVoter) return;
+  const d = await getData();
+  if (!d[voter]) d[voter] = {};
+  d[voter][houseId] = stars;
+  await saveData(d);
   updateUI();
 }
 
 async function updateUI() {
-  const votes = await getVotes();
-  const myVote = currentVoter ? votes[currentVoter] : null;
+  const d = await getData();
 
-  // Voter buttons state
+  // Voter buttons
   VOTERS.forEach(v => {
     const btn = document.querySelector(`.voter-btn[data-voter="${v}"]`);
-    if (btn) btn.classList.toggle('voted', !!votes[v]);
+    if (!btn) return;
+    const hasRated = d[v] && Object.keys(d[v]).length > 0;
+    btn.classList.toggle('rated', hasRated);
   });
 
-  const votedCount = Object.keys(votes).length;
+  // Status
+  const ratedCount = VOTERS.filter(v => d[v] && Object.keys(d[v]).length > 0).length;
   const statusEl = document.getElementById('voter-status');
   if (statusEl) statusEl.textContent =
-    votedCount === 0 ? 'Aucun vote encore' :
-    votedCount === VOTERS.length ? '✅ Tout le monde a voté !' :
-    `${votedCount} / ${VOTERS.length} ont voté`;
+    ratedCount === 0 ? 'Aucune note encore' :
+    ratedCount === VOTERS.length ? '✅ Tout le monde a noté !' :
+    `${ratedCount} / ${VOTERS.length} ont noté`;
 
-  const allVals = Object.values(votes);
-  const maxN = Math.max(1, ...HOUSES.map(h => allVals.filter(v => v===h).length));
-
+  // Per-house UI
   HOUSES.forEach(hid => {
-    const votersFor = Object.entries(votes).filter(([,h]) => h===hid).map(([v]) => v);
-    const n = votersFor.length;
+    // Collect all ratings for this house
+    const ratings = VOTERS.map(v => d[v] && d[v][hid] != null ? d[v][hid] : null);
+    const validRatings = ratings.filter(r => r !== null);
+    const avg = validRatings.length ? (validRatings.reduce((a,b)=>a+b,0)/validRatings.length) : null;
 
-    const chips = document.getElementById('chips-'+hid);
-    const countEl = document.getElementById('count-'+hid);
-    if (chips) chips.innerHTML = votersFor.map(v =>
-      `<span class="vote-chip" style="background:${HOUSE_COLORS[hid]}22;border-color:${HOUSE_COLORS[hid]}66;color:${HOUSE_COLORS[hid]}">👤 ${v}</span>`
-    ).join('');
-    if (countEl) countEl.textContent = n===0?'Aucun vote':n===1?'1 vote':n+' votes';
+    // Average display
+    const avgEl = document.getElementById('avg-'+hid);
+    if (avgEl) avgEl.textContent = avg !== null ? avg.toFixed(1)+' / 5' : '— / 5';
 
-    const btn = document.getElementById('vbtn-'+hid);
-    if (btn) {
-      if (!currentVoter) {
-        btn.disabled=true; btn.className='vote-btn'; btn.style.background=''; btn.style.borderColor='';
-        btn.textContent='🗳️ Sélectionne ton prénom';
-      } else if (myVote===hid) {
-        btn.disabled=false; btn.className='vote-btn my-vote';
-        btn.style.background=HOUSE_COLORS[hid]; btn.style.borderColor=HOUSE_COLORS[hid];
-        btn.textContent='✅ Mon choix !';
-      } else {
-        btn.disabled=false; btn.className='vote-btn'; btn.style.background=''; btn.style.borderColor='';
-        btn.textContent=myVote?'🔄 Changer mon vote':'🗳️ Voter pour cette maison';
+    // Each voter row
+    VOTERS.forEach((v, i) => {
+      const row = document.getElementById(`row-${hid}-${v}`);
+      const valEl = document.getElementById(`val-${hid}-${v}`);
+      const rating = d[v] && d[v][hid] != null ? d[v][hid] : null;
+
+      if (row) {
+        row.classList.toggle('is-me', v === currentVoter);
+        // Enable/disable stars
+        const inputs = row.querySelectorAll('input');
+        inputs.forEach(inp => { inp.disabled = (v !== currentVoter); });
+        // Set star display for non-current voters using CSS trick
+        if (v !== currentVoter && rating !== null) {
+          // Visually show stars by checking the radio
+          const inp = row.querySelector(`input[value="${rating}"]`);
+          if (inp) inp.checked = true;
+        } else if (v === currentVoter && rating !== null) {
+          const inp = row.querySelector(`input[value="${rating}"]`);
+          if (inp) inp.checked = true;
+        }
       }
-    }
 
+      if (valEl) {
+        valEl.textContent = rating !== null ? '★'.repeat(rating) + '☆'.repeat(5-rating) : '—';
+        valEl.className = 'star-val' + (rating !== null ? ' has-val' : '');
+      }
+    });
+
+    // Result bar
     const fill = document.getElementById('bar-'+hid);
-    const score = document.getElementById('score-'+hid);
-    if (fill) fill.style.width=(n/maxN*100)+'%';
-    if (score) score.textContent=n===0?'0 vote':n===1?'1 vote':n+' votes';
+    const ravg = document.getElementById('ravg-'+hid);
+    if (fill) fill.style.width = avg !== null ? (avg/5*100)+'%' : '0%';
+    if (ravg) ravg.textContent = avg !== null ? avg.toFixed(1)+' ⭐' : '— / 5';
   });
+
+  // Sort result bars by avg desc
+  const resultBarsEl = document.getElementById('result-bars');
+  if (resultBarsEl) {
+    const rows = HOUSES.map(hid => {
+      const ratings = VOTERS.map(v => d[v] && d[v][hid] != null ? d[v][hid] : null).filter(r=>r!==null);
+      const avg = ratings.length ? ratings.reduce((a,b)=>a+b,0)/ratings.length : -1;
+      return {hid, avg, el: document.getElementById('bar-'+hid)?.closest('.result-row')};
+    }).sort((a,b) => b.avg - a.avg);
+    rows.forEach(r => { if(r.el) resultBarsEl.appendChild(r.el); });
+  }
 }
 
 updateUI();
